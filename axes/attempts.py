@@ -157,6 +157,7 @@ def is_user_lockable(request, credentials=None):
     try:
         field = getattr(get_user_model(), 'USERNAME_FIELD', 'username')
         kwargs = {
+            "is_active": True,
             field: get_client_username(request, credentials)
         }
         user = get_user_model().objects.get(**kwargs)
